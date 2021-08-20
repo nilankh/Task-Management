@@ -12,23 +12,22 @@ export class TasksService {
     return this.tasks;
   }
 
-  getTasksWithFilters(filterDto: GetTasksFilterDto): Task[]{
-    const {status, search} =  filterDto;
+  getTasksWithFilters(filterDto: GetTasksFilterDto): Task[] {
+    const { status, search } = filterDto;
     // Define a temporary array to hold the result
     let tasks = this.getAllTasks();
 
-
     // Do something with status
-    if(status){
+    if (status) {
       // ....
       tasks = tasks.filter((task) => task.status === status);
     }
-    
+
     // Do something with search
-    if(search){
+    if (search) {
       // ...
       tasks = tasks.filter((task) => {
-        if(task.title.includes(search) || task.description.includes(search)){
+        if (task.title.includes(search) || task.description.includes(search)) {
           return true;
         }
         return false;
@@ -61,10 +60,9 @@ export class TasksService {
     this.tasks = this.tasks.filter((task) => task.id !== id);
   }
 
-  updateTaskStatus(id: string, status: TaskStatus){
+  updateTaskStatus(id: string, status: TaskStatus) {
     const task = this.getTaskById(id);
     task.status = status;
     return task;
-
   }
 }
